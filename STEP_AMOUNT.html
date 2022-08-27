@@ -1,0 +1,55 @@
+<script>
+    function formatAmountStep() {
+        // Array of fields
+        var amountStepFields = []
+        // Set the fields
+        var contentRow = document.querySelector('#sidebar-content').parentElement.parentElement
+        amountStepFields.push(contentRow)
+        var giftDisplayRow = document.querySelector('#gift-display').parentElement.parentElement
+        amountStepFields.push(giftDisplayRow)
+        var giftArrayRow = document.querySelector('#gift-array-container').parentElement.parentElement
+        amountStepFields.push(giftArrayRow)
+        var tributeControlRow = document.querySelector('#tribute_show_honor_fields_row')
+        if (tributeControlRow) {
+            amountStepFields.push(tributeControlRow)
+        }
+        var donorSourceRow = document.querySelector('#source__donor_identified_dropdown')
+        if (donorSourceRow) {
+            donorSourceRow = donorSourceRow.parentElement.parentElement
+            amountStepFields.push(donorSourceRow)
+        }
+        var nativeAmountRow = document.querySelector('.don-standard-levels.form-row')
+        amountStepFields.push(nativeAmountRow)
+        var nativeRecurringRow = document.querySelector('.donation-level-container-generic-repeat.form-input')
+        amountStepFields.push(nativeRecurringRow)
+
+        for (let index = 0; index < amountStepFields.length; index++) {
+            document.getElementById('form-step-amount').appendChild(amountStepFields[index])
+        }
+
+        // Add functionality for tribute checkbox
+        if (tributeControlRow) {
+            document.getElementById('tribute_show_honor_fieldsname').addEventListener('change', function () {
+                TRIBUTE_CHECKED = this.checked
+            })
+        }
+
+        // Add the "Next step" button
+        var nextStep = document.createElement('span')
+        nextStep.setAttribute('data-next-step', 'billing')
+        nextStep.classList.add('next-step-button')
+        nextStep.textContent = 'Next >'
+        document.getElementById('form-step-amount').appendChild(nextStep)
+
+        nextStep.addEventListener('click', function (e) {
+            // Check if amount is valid before continuing
+            if (!CHOSEN_AMOUNT >= formConfig.minAmount) {
+                e.preventDefault()
+            } else {
+                // Check what step comes next based on tribute option
+                TRIBUTE_CHECKED ? FORM_STEP = 'gift' : FORM_STEP = 'billing'
+                renderStep()
+            }
+        })
+    }    
+</script>

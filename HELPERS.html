@@ -1,0 +1,76 @@
+<!-- Begin Helpers -->
+<script>
+    // HELPERS
+    // Search for URL parameter & value
+    var urlParams = new URLSearchParams(window.location.search)
+
+    // Returns the key code
+    // Fix implemented for mobile devices input fields
+    var getKeyCode = function (str) {
+        return str.charCodeAt(str.length - 1)
+    }
+
+    // Separate thousands with commas
+    function commaSeparated(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    // Stores item in session
+    function storeInSession(name, value) {
+        sessionStorage.setItem(client + '-' + form + '-' + name, value)
+    }
+
+    // Retrieves item from session
+    function retrieveFromSession(name) {
+        return sessionStorage.getItem(client + '-' + form + '-' + name)
+    }
+
+    // Render form step
+    function renderStep() {
+        // Decide what step to render based on global var
+        function removeActiveStep() {
+            document.querySelectorAll('.form-step').forEach(function (step) {
+                step.classList.remove('active')
+            })
+        }
+
+        function removeActiveTab() {
+            document.querySelectorAll('.page-item').forEach(function (tab) {
+                tab.classList.remove('active')
+            })
+        }
+        switch (FORM_STEP) {
+            case 'amount':
+                removeActiveStep()
+                document.getElementById('form-step-amount').classList.add('active')
+                removeActiveTab()
+                document.getElementById('tab-amount').classList.add('active')
+                break;
+            case 'gift':
+                removeActiveStep()
+                document.getElementById('form-step-gift').classList.add('active')
+                removeActiveTab()
+                document.getElementById('tab-gift').classList.add('active')
+                break;
+            case 'billing':
+                removeActiveStep()
+                document.getElementById('form-step-billing').classList.add('active')
+                removeActiveTab()
+                document.getElementById('tab-billing').classList.add('active')
+                break;
+            case 'payment':
+                removeActiveStep()
+                document.getElementById('form-step-payment').classList.add('active')
+                removeActiveTab()
+                document.getElementById('tab-payment').classList.add('active')
+                break;
+            default:
+                removeActiveStep()
+                document.getElementById('form-step-amount').classList.add('active')
+                removeActiveTab()
+                document.getElementById('tab-amount').classList.add('active')
+                break;
+        }
+    }
+</script>
+<!-- End Helpers -->

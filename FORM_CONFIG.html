@@ -1,0 +1,57 @@
+<!-- FORM CONFIGURATION -->
+<!-- Edit the main settings for the form in this code block, DO NOT REMOVE -->
+<!-- 
+    minAmount ::: Must be greater or equal to what is configured in the "Configure Donation Levels" menu, use numeric values only
+    oneTimeArray ::: Pair up amounts and custom texts for the one-time gift array
+    monthlyArray ::: Pair up amounts and custom texts for the monthly gift array
+    defaultOneTime ::: Set the default amount for the one-time gift, use numeric values only
+    defaultMonthly ::: Set the default amount for the monthly gift, use numeric values only
+    defaultRecurring ::: If set to "true" then the monthly gift option will be preselected, set it to "false" to preselect a one-time gift
+ -->
+<script>
+    var formConfig = {
+        minAmount: 5, 
+        oneTimeArray: [
+            {
+                amount: 75,
+                legend:
+                    'Can provide four thermal blankets to offer people protection and warmth during a humanitarian emergency.',
+            },
+            {
+                amount: 175,
+                legend:
+                    'Can cover the cost of sending a doctor to the field for a day.',
+            },
+            {
+                amount: 300,
+                legend:
+                    'Can provide an oxygen kit packed with tools to help MSF deliver oxygen to patients in distress.',
+            },
+            {
+                amount: 550,
+                legend:
+                    'Can provide a childhood immunization kit, packed with the supplies to vaccinate 10 children against preventable diseases.',
+            }
+        ],
+        monthlyArray: [
+            {
+                amount: 30,
+                legend:
+                    'Can purchase 26 obstetrical stethoscopes for monitoring fetal heartbeats.',
+            },
+            {
+                amount: 50,
+                legend:
+                    'Can purchase new rapid tests to check two people for drug-resistant tuberculosis, cutting diagnosis time from 42 days to two hours.',
+            },
+            {
+                amount: 75,
+                legend:
+                    'Can purchase chlorination equipment to provide 690 people with clean drinking water for one week in an emergency.',
+            }
+        ],
+        defaultOneTime: 175,
+        defaultMonthly: 50,
+        defaultRecurring: false,
+    }
+</script>

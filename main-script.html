@@ -1,0 +1,219 @@
+<script>
+  // GLOBAL VARS
+  var CHOSEN_AMOUNT,
+    FEES_COVERED = false,
+    GIVING_FREQUENCY,
+    TRIBUTE_CHECKED,
+    ONE_TIME_AMOUNTS = [],
+    MONTHLY_AMOUNTS = [],
+    FORM_ERRORS = [],
+    TRIBUTE_INFO = {},
+    ECARD_DATA = {},
+    PRINT_CARD_DATA = {},
+    FORM_STEP = 'amount'
+</script>
+<!-- FORMATTERS -->
+[[S51:RKD_Legacy_Wrapper_Rebuild_Amount_Step_Formatter]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Gift_Step_Formatter]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Billing_Step_Formatter]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Payment_Step_Formatter]]
+<!-- Donation Form Scripts -->
+<!-- English version -->
+<script>
+
+  // CLIENT VARS
+  var client = 'MSF'
+  var form = '[[S120:dc:donFormId]]'
+
+  // DONATION FORM ELEMENTS
+  var nativeOtherAmountInput = document.querySelector(
+    '.donation-level-user-entered > input'
+  )
+
+  function initForm() {
+    // Check for page
+    if (urlParams.get(form + '.donation') === 'form1') {
+      wrapComponents()
+      defineGiftArray()
+    } else if (urlParams.get(form + '.donation') === 'completed') {
+    } else {
+      wrapComponents()
+      defineGiftArray()
+    }
+  }
+
+  function wrapComponents() {
+
+    formatAmountStep()
+
+    formatGiftStep()
+
+    formatBillingStep()
+
+    formatPaymentStep()
+
+  }
+
+  function defineGiftArray() {
+    // Fetch amounts from config file
+    for (var index = 0; index < formConfig.oneTimeArray.length; index++) {
+      ONE_TIME_AMOUNTS.push(formConfig.oneTimeArray[index].amount)
+    }
+
+    // Fetch amounts from config file
+    for (var index = 0; index < formConfig.monthlyArray.length; index++) {
+      MONTHLY_AMOUNTS.push(formConfig.monthlyArray[index].amount)
+    }
+
+    renderGiftArray()
+  }
+
+  function renderGiftArray() {
+    ONE_TIME_AMOUNTS.forEach(function (amount, index) {
+      var button = document.createElement('div')
+      button.classList.add('gift-array-button')
+      button.setAttribute('data-amount', amount)
+      button.setAttribute('data-order', index)
+      button.textContent = '$' + commaSeparated(amount)
+      document.querySelector('#one-time-array').appendChild(button)
+    })
+
+    MONTHLY_AMOUNTS.forEach(function (amount, index) {
+      var button = document.createElement('div')
+      button.classList.add('gift-array-button')
+      button.setAttribute('data-amount', amount)
+      button.setAttribute('data-order', index)
+      button.textContent = '$' + commaSeparated(amount)
+      document.querySelector('#monthly-array').appendChild(button)
+    })
+
+    addFormListeners()
+  }
+
+  function addFormListeners() {
+    // Elements
+    var donationButtons = document.querySelectorAll('.gift-array-button')
+    var otherAmountInput = document.getElementById('other-amount-input')
+    var accepted = [
+      8, 37, 39, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100,
+      101, 102, 103, 104, 105, 110, 190,
+    ]
+
+    donationButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        donationButtons.forEach(function (element) {
+          element.classList.remove('chosen')
+        })
+        otherAmountInput.classList.remove('chosen')
+        button.classList.add('chosen')
+        updateGiftAmount(button.getAttribute('data-amount'))
+      })
+    })
+
+    otherAmountInput.addEventListener('focus', function () {
+      CHOSEN_AMOUNT = 0
+      donationButtons.forEach(function (element) {
+        element.classList.remove('chosen')
+      })
+      this.classList.add('chosen')
+      updateGiftAmount(CHOSEN_AMOUNT)
+    })
+
+    otherAmountInput.addEventListener('input', function (e) {
+      var amount = this.value
+      e = e || window.event
+      var decimal = amount.split('.')
+      var charCode = e.keyCode || e.which
+      if (charCode == 0 || charCode == 229) {
+        charCode = getKeyCode(this.value)
+      }
+
+      if (e.ctrlKey || e.shiftKey || (decimal.length > 1 && (charCode === 110 || charCode === 190)) || !accepted.includes(charCode)) {
+        e.preventDefault()
+      } else {
+        setTimeout(function () {
+          var curValue = document.getElementById('other-amount-input').value
+          var amt = curValue
+          updateGiftAmount(amt)
+        }, 50)
+      }
+    })
+
+    otherAmountInput.addEventListener('keydown', function (e) {
+      var amount = this.value
+      e = e || window.event
+      var decimal = amount.split('.')
+      var charCode = e.keyCode || e.which
+      if (charCode == 0 || charCode == 229) {
+        charCode = getKeyCode(this.value)
+      }
+
+      if (e.ctrlKey || e.shiftKey || (decimal.length > 1 && (charCode === 110 || charCode === 190)) || !accepted.includes(charCode)) {
+        e.preventDefault()
+      } else {
+        setTimeout(function () {
+          var curValue = document.getElementById('other-amount-input').value
+          var amt = curValue
+          updateGiftAmount(amt)
+        }, 50)
+      }
+    })
+
+    otherAmountInput.addEventListener('change', function (e) {
+      var amount = this.value
+      e = e || window.event
+      var decimal = amount.split('.')
+      var charCode = e.keyCode || e.which
+      if (charCode == 0 || charCode == 229) {
+        charCode = getKeyCode(this.value)
+      }
+
+      if (e.ctrlKey || e.shiftKey || (decimal.length > 1 && (charCode === 110 || charCode === 190)) || !accepted.includes(charCode)) {
+        e.preventDefault()
+      } else {
+        setTimeout(function () {
+          var curValue = document.getElementById('other-amount-input').value
+          var amt = curValue
+          updateGiftAmount(amt)
+        }, 50)
+      }
+    })
+
+    loadInitialState()
+  }
+
+  loadInitialState() {
+    // Check for frequency
+    // Check for amount
+    // Check for tribute
+
+    renderStep()
+  }
+
+  function updateGiftAmount(amount) {
+    amount = Number(amount)
+    CHOSEN_AMOUNT = amount
+    var calculatedAmount = 0
+    // var calculatedFee = Number((amount * formConfig.feePercentage) / 100)
+    if (FEES_COVERED) {
+      nativeCoverFeesInput.value = calculatedFee
+      calculatedAmount = amount + calculatedFee
+    } else {
+      calculatedAmount = CHOSEN_AMOUNT
+      // nativeCoverFeesInput.value = 0
+    }
+
+    // Populating the native input
+    if (!calculatedAmount >= formConfig.minAmount) {
+      console.log('Invalid amount')
+    }
+
+    nativeOtherAmountInput.value = calculatedAmount.toFixed(2)
+
+    storeInSession('chosen', calculatedAmount)
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    initForm()
+  })
+</script>
