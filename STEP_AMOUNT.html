@@ -38,12 +38,12 @@
         var nextStep = document.createElement('span')
         nextStep.setAttribute('data-next-step', 'billing')
         nextStep.classList.add('next-step-button')
-        nextStep.textContent = 'Next >'
+        nextStep.textContent = 'Next'
         document.getElementById('form-step-amount').appendChild(nextStep)
 
         nextStep.addEventListener('click', function (e) {
             // Check if amount is valid before continuing
-            if (!CHOSEN_AMOUNT >= formConfig.minAmount) {
+            if (CHOSEN_AMOUNT < formConfig.minAmount) {
                 e.preventDefault()
             } else {
                 // Check what step comes next based on tribute option
