@@ -14,11 +14,11 @@
     FORM_STEP = 'amount'
 </script>
 <!-- FORMATTERS -->
-[[S51:RKD_Legacy_Wrapper_Rebuild_Error_Modal]]
-[[S51:RKD_Legacy_Wrapper_Rebuild_Amount_Step_Formatter]]
-[[S51:RKD_Legacy_Wrapper_Rebuild_Gift_Step_Formatter]]
-[[S51:RKD_Legacy_Wrapper_Rebuild_Billing_Step_Formatter]]
-[[S51:RKD_Legacy_Wrapper_Rebuild_Payment_Step_Formatter]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Error_Modal_French]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Amount_Step_Formatter_French]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Gift_Step_Formatter_French]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Billing_Step_Formatter_French]]
+[[S51:RKD_Legacy_Wrapper_Rebuild_Payment_Step_Formatter_French]]
 <!-- Donation Form Scripts -->
 <!-- English version -->
 <script>
@@ -35,34 +35,10 @@
   function initForm() {
     // Check for page
     if (urlParams.get(form + '.donation') === 'form1') {
-      window.addEventListener('resize', function (event) {
-        if (window.innerWidth >= 768) {
-          document.getElementById('creative-content').style.display = 'block'
-          document.getElementById('show-form-mobile').style.display = 'none'
-          document.querySelector('#wrapper aside').style.display = 'block'
-        } else {
-          document.getElementById('creative-content').style.display = 'block'
-          document.getElementById('show-form-mobile').style.display = 'block'
-          document.querySelector('#wrapper aside').style.display = 'none'
-        }
-      })
       wrapComponents()
       defineGiftArray()
     } else if (urlParams.get(form + '.donation') === 'completed') {
-      console.log('Thank you page loaded')
-      return
     } else {
-      window.addEventListener('resize', function (event) {
-        if (window.innerWidth >= 768) {
-          document.getElementById('creative-content').style.display = 'block'
-          document.getElementById('show-form-mobile').style.display = 'none'
-          document.querySelector('#wrapper aside').style.display = 'block'
-        } else {
-          document.getElementById('creative-content').style.display = 'block'
-          document.getElementById('show-form-mobile').style.display = 'block'
-          document.querySelector('#wrapper aside').style.display = 'none'
-        }
-      })
       wrapComponents()
       defineGiftArray()
     }
@@ -237,6 +213,19 @@
       document.getElementById('creative-content').style.display = 'block'
       document.getElementById('show-form-mobile').style.display = 'block'
       document.querySelector('#wrapper aside').style.display = 'none'
+    })
+
+
+    window.addEventListener('resize', function (event) {
+      if (window.innerWidth >= 768) {
+        document.getElementById('creative-content').style.display = 'block'
+        document.getElementById('show-form-mobile').style.display = 'none'
+        document.querySelector('#wrapper aside').style.display = 'block'
+      } else {
+        document.getElementById('creative-content').style.display = 'block'
+        document.getElementById('show-form-mobile').style.display = 'block'
+        document.querySelector('#wrapper aside').style.display = 'none'
+      }
     })
 
     loadInitialState()

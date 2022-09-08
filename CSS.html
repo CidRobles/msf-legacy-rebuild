@@ -1,0 +1,929 @@
+<style type="text/css">
+    @font-face {
+        font-family: tk-freight-sans-pro-n4;
+        src: url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: tk-freight-sans-pro-n7;
+        src: url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+        font-weight: 700;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: tk-freight-sans-pro-n6;
+        src: url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff2"), url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff"), url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("opentype");
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+</style>
+<style type="text/css">
+    @font-face {
+        font-family: freight-sans-pro;
+        src: url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/442215/000000000000000000010b5a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: freight-sans-pro;
+        src: url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/1709eb/000000000000000000010b60/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+        font-weight: 700;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+
+    @font-face {
+        font-family: freight-sans-pro;
+        src: url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff2"), url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("woff"), url(https://use.typekit.net/af/cef9f3/000000000000000000010b5e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3) format("opentype");
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        font-display: auto;
+    }
+</style>
+<style>
+    /* General Styling */
+    * {
+        font-family: "freight-sans-pro", "Helvetica", "Arial", sans-serif !important;
+        max-width: 100%;
+        box-sizing: border-box;
+        color: #000;
+    }
+
+    body {
+        background-color: #e5e6e8;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    /* Clearing LO rules */
+    #ProcessForm .donation-form-container.responsive {
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background-color: #fff;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    div.responsive input[type="text"],
+    div.responsive input[type="number"],
+    div.responsive input[type="email"],
+    div.responsive input[type="password"],
+    div.responsive textarea,
+    div.responsive select,
+    .custom-field-container select {
+        border-color: #231f20;
+        border-radius: 2px;
+        box-shadow: none;
+        min-height: 39px;
+        max-width: 100%;
+    }
+
+    div.responsive input[type="checkbox"] {
+        position: relative;
+        top: 6px;
+        margin-right: 6px;
+    }
+
+    div.responsive input[type="checkbox"]+label {
+        display: inline-block;
+        max-width: 90%;
+    }
+
+    .form-content {
+        max-width: unset;
+        width: 100%;
+    }
+
+    /* Wrapper */
+    #wrapper {
+        display: grid;
+        grid-template-columns: 65% 35%;
+        max-width: 1180px;
+        margin: 0 auto;
+        background-color: #fff;
+    }
+
+    #wrapper aside {
+        padding: 20px;
+        background: url(https://secure3.convio.net/msfcan/images/content/pagebuilder/msf-ye-2015-border.jpg?1571167393);
+        background-repeat: repeat-y;
+        background-color: white;
+        z-index: 90;
+    }
+
+    /* Pagination */
+    #secure {
+        margin-bottom: 1em;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+
+    }
+
+    #secure i {
+        font-style: normal;
+    }
+
+    #form-progress nav ul.pagination {
+        justify-content: center;
+    }
+
+    #form-progress nav ul.pagination li {
+        font-family: "freight-sans-pro", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        vertical-align: middle;
+        color: #444;
+        background: #dddfde;
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiNkZGRmZGUiLz48c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iI2Q1ZDZkOCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #dddfde), color-stop(60%, #d5d6d8));
+        background: -moz-linear-gradient(#dddfde 40%, #d5d6d8 60%);
+        background: -webkit-linear-gradient(#dddfde 40%, #d5d6d8 60%);
+        background: linear-gradient(#dddfde 40%, #d5d6d8 60%);
+        border: none;
+        padding: 5px 12px;
+        font-size: 10px;
+        line-height: 16px;
+        display: inline-block;
+        position: relative;
+        font-size: 12px;
+        color: #fff;
+    }
+
+    #form-progress nav ul.pagination li.page-item.active,
+    #form-progress nav ul.pagination li.page-item.completed {
+        background: #f42841;
+        border: none;
+        color: #fff;
+    }
+
+    #form-progress nav ul.pagination li.page-item.active::after {
+        content: "";
+        width: 0;
+        height: 0;
+        display: block;
+        border-width: 10px;
+        border-color: #f42841 transparent transparent;
+        border-style: solid;
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        margin-left: -10px;
+    }
+
+    .page-link,
+    .page-link:hover {
+        color: #000;
+    }
+
+    .completed .page-link,
+    .completed .page-link:hover {
+        color: #fff;
+    }
+
+    li.page-item.active .page-link:hover {
+        color: #fff;
+    }
+
+    span.page-link,
+    .active .page-link,
+    .page-link.active {
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+
+    span.page-link:hover,
+    .active .page-link:hover,
+    .page-link.active:hover {
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+
+    /* Steps */
+    .form-step {
+        display: none;
+    }
+
+    .form-step.active {
+        display: block !important;
+    }
+
+    /* Next button */
+    .next-step-button {
+        display: block;
+        margin: 1rem 0;
+        border-radius: 0;
+        color: #fff;
+        background-color: #f42841;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 1.22rem;
+        padding: 8px 5px;
+        letter-spacing: 1.1px;
+        width: 100%;
+        text-align: right;
+        cursor: pointer;
+    }
+
+    .next-step-button::after {
+        display: inline-block;
+        content: "";
+        vertical-align: -.125em;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='white' class='bi bi-chevron-right' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: 1rem 1rem;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .previous-step-button {
+        cursor: pointer;
+    }
+
+    .previous-step-button::before {
+        display: inline-block;
+        content: "";
+        vertical-align: -.125em;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-left' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: 1rem 1rem;
+        width: 1rem;
+        height: 1rem;
+    }
+
+    /* Amount Display */
+    #gift-display {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #gift-amount-display {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #amount,
+    #pm-text {
+        font-family: "Helvetica", "Arial", sans-serif !important;
+        color: #f42841;
+        font-weight: 700;
+    }
+
+    #amount {
+        font-size: 2.5rem;
+    }
+
+    #pm-text {
+        position: relative;
+        top: -1.5em;
+    }
+
+    #gift-amount-legend {
+        font-size: 1.15rem;
+    }
+
+    /* Frequency selector */
+    #frequency-selector-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 1rem 0;
+    }
+
+    .frequency-button {
+        clear: none;
+        float: left;
+        margin: 0 2% 0px 0px;
+        display: block;
+        padding-bottom: 6px;
+        font-family: "freight-sans-pro", "Helvetica", "Arial", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .frequency-button input {
+        margin-left: -9999px;
+        position: absolute;
+    }
+
+    .frequency-button label {
+        display: block;
+        float: none;
+        border-radius: 1px;
+        background: #f3f3f3;
+        color: #646464;
+        box-shadow: 1px 1px 2px #000;
+        box-shadow: 1px 1px 2pxrgba(0, 0, 0, 0.3);
+        padding-right: 26px;
+    }
+
+    .frequency-button input[type='radio']:empty~label {
+        position: relative;
+        line-height: 1.05em;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding-left: 3.25em;
+        padding-right: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        min-height: 45px;
+        line-height: 45px;
+    }
+
+
+    .frequency-button input[type='radio']:empty~label:before {
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 2.5em;
+        background: #a6a7ab;
+        border-radius: 1px 0 0 1px;
+    }
+
+    .frequency-button input[type='radio']:hover:not(:checked)~label:before {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-check' viewBox='0 0 16 16'><path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+    .frequency-button input[type='radio']:checked~label:before {
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' class='bi bi-check' viewBox='0 0 16 16'><path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #fff;
+        background-color: #f42841;
+    }
+
+    /* Gift array */
+    #one-time-array,
+    #monthly-array {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 4px;
+        margin: 1rem 0;
+    }
+
+    .gift-array-button {
+        font-family: "Helvetica", "Arial", sans-serif !important;
+        background: #efefef;
+        border: 1px solid #d4d4d2;
+        width: 100%;
+        font-size: 18px;
+        color: #727272;
+        border-radius: 3px;
+        text-align: center;
+        line-height: 38px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        color: #727272;
+        font-weight: 400;
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    .gift-array-button.chosen,
+    .gift-array-button.chosen:hover {
+        cursor: pointer;
+        background: #000001;
+        border-color: #000;
+        color: white;
+    }
+
+    .gift-array-button:hover {
+        cursor: pointer;
+        background: #e9e9e9;
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2U5ZTllOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2RjZGNkYyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+        background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e9e9e9), color-stop(100%, #dcdcdc));
+        background: -moz-linear-gradient(#e9e9e9 0%, #dcdcdc 100%);
+        background: -webkit-linear-gradient(#e9e9e9 0%, #dcdcdc 100%);
+        background: linear-gradient(#e9e9e9 0%, #dcdcdc 100%);
+    }
+
+    /* Step 1 */
+    #source__donor_identified_dropdown {
+        width: 100%;
+    }
+
+    .don-standard-levels.form-row,
+    .donation-level-container-generic-repeat.form-input {
+        display: none;
+    }
+
+    /* Step 2 */
+    #tribute_type,
+    #tribute_honoree_namename,
+    #card_type_dropdown,
+    #sender_name_input,
+    #tribute_notify_recip_namename,
+    #tribute_message_bodyname,
+    #tribute_message_bodyname,
+    #print_and_mail_ecard_email_input,
+    #print_and_mail_ecard_subject_input,
+    #tribute_notify_recip_cityname,
+    #tribute_notify_recip_state,
+    #tribute_notify_recip_zipname,
+    #tribute_notify_recip_country,
+    #tribute_notify_recip_title {
+        width: 100%;
+    }
+
+    /* eCards */
+    #ecard-templates-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+    }
+
+    .card-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .card-item label {
+        text-align: center;
+    }
+
+    .card-item label input {
+        margin-top: 0.5rem;
+    }
+
+    #printCard-preview-modal,
+    #eCard-preview-modal {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.85);
+        overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        -ms-overflow-style: none;
+        /* Internet Explorer 10+ */
+        scrollbar-width: none;
+        /* Firefox */
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        padding-top: 20vh;
+    }
+
+    #printCard-preview-modal::-webkit-scrollbar,
+    #eCard-preview-modal::-webkit-scrollbar {
+        display: none;
+    }
+
+    #close-eCard-preview-modal,
+    #close-printCard-preview-modal {
+        position: fixed;
+        top: 2.5rem;
+        right: 2.5rem;
+        color: #fff;
+        font-weight: bold;
+        font-size: 4rem;
+        cursor: pointer;
+    }
+
+    #eCard-preview-modal-container,
+    #printCard-preview-modal-container {
+        background-color: #fff;
+        max-width: 75%;
+        margin: 0 auto;
+        padding: 3rem;
+        border-radius: 4px;
+    }
+
+    #eCard-preview-modal-header,
+    #eCard-preview-modal-body,
+    #eCard-preview-modal-footer {
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    #eCard-description {
+        display: block;
+        color: #fff;
+        background-color: #231F20;
+        padding: 4px;
+    }
+
+    #eCard-preview-modal-body p,
+    #printCard-preview-modal-body p,
+    #eCard-preview-modal-body span,
+    #printCard-preview-modal-body span {
+        font-family: Helvetica, Arial, sans-serif !important;
+        color: #636466;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #eCard-honoreeName,
+    #eCard-message {
+        font-style: italic;
+        color: #0a0a0a;
+    }
+
+    #eCard-preview-modal-body small {
+        font-family: Helvetica, Arial, sans-serif !important;
+        color: #636466;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    #eCard-preview-modal-footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        margin-top: 2.5rem;
+        padding: 0 2rem;
+    }
+
+    #eCard-preview-modal-footer div:first-of-type {
+        border-right: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #eCard-preview-modal-footer div:first-of-type p {
+        font-family: Helvetica, Arial, sans-serif !important;
+        color: #0a0a0a;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    #eCard-preview-modal-footer div:first-of-type a {
+        font-family: Helvetica, Arial, sans-serif !important;
+        font-size: 18px;
+        color: #ED1C24;
+        margin: 0;
+        text-decoration: none;
+    }
+
+    #eCard-preview-modal-footer div img {
+        max-width: 150px;
+        margin: 1rem auto;
+        display: block;
+    }
+
+    /* Print Card preview */
+    #printCard-image {
+        position: absolute;
+        top: 0px;
+        left: 225px;
+        max-width: 300px;
+    }
+
+    #printCard-preview-modal-body {
+        margin-top: 5rem;
+        text-align: center;
+    }
+
+    #printCard-preview-modal-footer {
+        margin-top: 2.5rem;
+    }
+
+    #printCard-preview-modal-footer div img {
+        max-width: 45%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    label[for="tribute_type"],
+    label[for="tribute_honoree_namename"],
+    label[for="card_type_dropdown"],
+    label[for="sender_name_input"],
+    label[for="tribute_notify_recip_title"],
+    label[for="tribute_notify_recip_namename"],
+    label[for="tribute_notify_recip_street1name"],
+    label[for="tribute_notify_recip_street2name"],
+    label[for="tribute_notify_recip_cityname"],
+    label[for="tribute_notify_recip_state"],
+    label[for="tribute_notify_recip_zipname"],
+    label[for="tribute_notify_recip_country"],
+    label[for="tribute_message_bodyname"],
+    #form-step-gift .form-input-label-block {
+        display: none;
+    }
+
+    #ecard-preview {
+        width: 100%;
+        background-color: #eaeaea;
+        margin-bottom: 10px;
+        border: 1px solid #231f20;
+        border-radius: 2px;
+        font-size: 18px;
+        text-align: center;
+        display: block;
+        padding: 2px auto;
+        margin: 1rem 0;
+        cursor: pointer;
+    }
+
+    /* Step 3 */
+    div.responsive span.field-required,
+    label[for="company_gift_dropdown"],
+    label[for="donor_employername"],
+    label[for="donor_title"],
+    label[for="donor_first_namename"],
+    label[for="donor_last_namename"],
+    label[for="donor_addr_street1name"],
+    label[for="donor_addr_street2name"],
+    label[for="donor_addr_cityname"],
+    label[for="donor_addr_state"],
+    label[for="donor_addr_zipname"],
+    label[for="donor_addr_country"],
+    label[for="donor_phonename"],
+    label[for="donor_email_addressname"],
+    label[for="billing_title"],
+    label[for="billing_first_namename"],
+    label[for="billing_last_namename"],
+    label[for="billing_addr_street1name"],
+    label[for="billing_addr_street2name"],
+    label[for="billing_addr_cityname"],
+    label[for="billing_addr_state"],
+    label[for="billing_addr_zipname"],
+    label[for="billing_addr_country"],
+    label[for="legacy_interest_dropdown"],
+    label[for="legacy_opt_in_dropdown"],
+    #billing_info_same_as_donor_row span.check-box-form-label-text,
+    #donor_employer_row {
+        display: none;
+    }
+
+    #form-step-billing select,
+    #form-step-billing input[type="text"],
+    #form-step-billing input[type="email"] {
+        width: 100%;
+    }
+
+    /* PAYMENT STEP */
+    #payment_cc_container h3,
+    label[for="responsive_payment_typecc_numbername"],
+    label[for="responsive_payment_typecc_exp_date_YEAR"],
+    label[for="responsive_payment_typecc_cvvname"] {
+        display: none;
+    }
+
+    #payment_cc_container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    #responsive_payment_typecc_type_row,
+    #responsive_payment_typecc_number_row {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    div.payment-field-container #responsive_payment_typecc_number_row input,
+    div.payment-field-container #responsive_payment_typecc_cvv_row input {
+        width: 100%;
+        position: relative;
+        top: -3px;
+    }
+
+    #responsive_payment_typecc_exp_date_row div.form-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #responsive_payment_typecc_cvv_row div.form-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .HelpLink {
+        color: #0a0a0a !important;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button-container.clearfix {
+        display: none;
+    }
+
+    #process-button {
+        display: block;
+        margin: 1rem 0;
+        border-radius: 0;
+        color: #fff;
+        background-color: #f42841;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 1.22rem;
+        padding: 8px 5px;
+        letter-spacing: 1.1px;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        font-family: "Helvetica", "Arial", sans-serif !important;
+    }
+
+
+    /* FOOTER */
+
+    ul.footer-links {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 0rem 0.5rem;
+        margin: 0;
+    }
+
+    ul.footer-links li {
+        padding: 0.75rem 0;
+        list-style: none;
+    }
+
+    ul.footer-links li a,
+    ul.footer-links li a:link,
+    ul.footer-links li a:visited,
+    ul.footer-links li a:active {
+        color: #000;
+        text-decoration: none;
+    }
+
+    ul.footer-links li a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-content {
+        background: #dadada;
+        padding: 5% 6%;
+    }
+
+    .footer-content h2 {
+        font-weight: 700;
+    }
+
+    #show-form-mobile {
+        background-color: #f42841;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        display: none;
+    }
+
+    #close-form-mobile {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: grey;
+        background-color: #dddfde;
+        line-height: 15px;
+        display: none;
+    }
+</style>
+<style>
+    @media(max-width:767px) {
+        .mobile div.html-caption-container {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .mobile #billing_addr_country_row select,
+        .mobile #billing_addr_state_row select,
+        .mobile #donor_addr_state_row select,
+        .mobile #donor_addr_country_row select,
+        .mobile #donor_occupation_row select,
+        .mobile #shipping_addr_country_row select,
+        .mobile #shipping_addr_state_row select,
+        .mobile #tribute_notify_recip_state_row select,
+        .mobile #tribute_notify_recip_country_row select,
+        .mobile .custom-field-container select,
+        .mobile div.employer-address-container select,
+        .mobile div.responsive textarea {
+            max-width: 100%;
+        }
+
+        .mobile div.responsive div.form-checkbox label,
+        label.custom-element-checkbox-label {
+            max-width: 90%;
+        }
+
+        #wrapper {
+            grid-template-columns: 1fr;
+        }
+
+
+        /* Hide DF */
+        #wrapper aside {
+            display: none;
+        }
+
+        #show-form-mobile {
+            display: block;
+            position: sticky;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: #fff;
+            font-size: 2.3rem;
+        }
+
+        #show-form-mobile #open-arrow {
+            position: absolute;
+            width: 30%;
+            display: block;
+            height: 20px;
+            top: -10px;
+            left: 50%;
+            margin-left: -15%;
+            background-size: 12.5%;
+            border-radius: 10px 10px 0 0;
+            background-color: #f42841;
+        }
+
+        #show-form-mobile #open-arrow i,
+        #open-label {
+            color: #fff;
+        }
+
+        #show-form-mobile #open-arrow i {
+            position: relative;
+            top: -12px;
+        }
+
+        #open-label {
+            line-height: 100px;
+            font-family: "Helvetica", "Arial", sans-serif !important;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        #close-form-mobile {
+            display: block;
+        }
+
+        /* ECARD */
+        #eCard-preview-modal {
+            padding-top: 0;
+        }
+
+        #close-eCard-preview-modal {
+            color: #fff;
+            background-color: #2c3e50;
+            display: block;
+            position: unset;
+            text-align: right;
+            padding: 0 20px;
+            font-size: 3rem;
+        }
+
+        #eCard-preview-modal-container {
+            max-width: 100%;
+            border-radius: 0;
+            padding: 15px;
+        }
+
+        #eCard-preview-modal-footer {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        #eCard-preview-modal-footer div:first-of-type {
+            border-right: none;
+        }
+    }
+
+    @media(min-width:768px) and (max-width:1024px) {
+        #wrapper {
+            grid-template-columns: 50% 50%;
+        }
+    }
+</style>

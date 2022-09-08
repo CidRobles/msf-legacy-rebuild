@@ -73,13 +73,13 @@
         var nextStep = document.createElement('span')
         nextStep.setAttribute('data-next-step', 'billing')
         nextStep.classList.add('next-step-button')
-        nextStep.textContent = 'Next'
+        nextStep.textContent = 'Suivant'
         document.getElementById('form-step-amount').appendChild(nextStep)
 
         nextStep.addEventListener('click', function (e) {
             // Check if amount is valid before continuing
             if (CHOSEN_AMOUNT < formConfig.minAmount) {
-                document.getElementById('gift-amount-warning').textContent = 'Minimum donation is $' + formConfig.minAmount
+                document.getElementById('gift-amount-warning').textContent = 'Le don minimum est de ' + formConfig.minAmount + '$'
             } else {
                 // Check what step comes next based on tribute option                
                 document.getElementById('gift-amount-warning').textContent = ''

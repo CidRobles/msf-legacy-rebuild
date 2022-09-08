@@ -97,8 +97,9 @@
     }
 
     function updateButtonText(amount) {
-        var extraText = MONTHLY_SELECTED ? 'Monthly' : ''
-        document.getElementById('process-button').textContent = ('Donate $' + commaSeparated(amount) + extraText)
+        var buttonText
+        MONTHLY_SELECTED ? (buttonText = 'Don ' + amount + ' $ par mois') : (buttonText = 'Faire un don ' + amount + ' $')
+        document.getElementById('process-button').textContent = buttonText
     }
 </script>
 <!-- End Helpers -->

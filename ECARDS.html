@@ -1,0 +1,176 @@
+<!-- BEGIN ECARD PREVIEW MODAL -->
+<div id="eCard-preview-modal" style="display:none;">
+    <span id="close-eCard-preview-modal" onclick="closeCardModal()">
+        &times;
+    </span>
+    <div id="eCard-preview-modal-container">
+        <div id="eCard-preview-modal-header">
+            <img src="" alt="" id="eCard-image">
+            <span id="eCard-description"></span>
+        </div>
+        <div id="eCard-preview-modal-body">
+            <p>A gift has been made to <br>
+                Doctors Without Borders/Médecins Sans Frontières (MSF) <br>
+                <span id="eCard-ocassion">In honour of</span>
+            </p>
+            <span id="eCard-honoreeName"></span>
+            <p>This gift will act as a lasting tribute and will help MSF
+                to save lives around the world.</p>
+            <p><span id="eCard-message">
+
+                </span></p>
+
+            <small>
+                This gift supports the humanitarian relief efforts of MSF to deliver critically needed healthcare to
+                people who have been made vulnerable by conflict, crisis, disaster or neglect. Our medical teams
+                work in more than 70 countries worldwide to help provide care that saves lives, alleviates suffering
+                and shows people in need they are not alone.
+            </small>
+        </div>
+        <div id="eCard-preview-modal-footer">
+            <div>
+                <a href="http://doctorswithoutborders.ca/">doctorswithoutborders.ca</a>
+                <p>1.800.928.8685</p>
+            </div>
+            <div>
+                <img src="../images/content/pagebuilder/logo_msf_bilingual_sm11398.png"
+                    alt="Doctors Without Borders Canada - Médecins Sans Frontières Canada">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function closeCardModal() {
+        document.getElementById('eCard-preview-modal').style.display = 'none'
+    }
+</script>
+<!-- END ECARD PREVIEW MODAL -->
+<!-- BEGIN PRINT CARD PREVIEW MODAL -->
+<div id="printCard-preview-modal" style="display:none;">
+    <span id="close-printCard-preview-modal" onclick="closePrintCardModal()">
+        &times;
+    </span>
+    <div id="printCard-preview-modal-container">
+        <div id="printCard-preview-modal-header">
+            <img src="" alt="" id="printCard-image">
+        </div>
+        <div id="printCard-preview-modal-body">
+            <p><span id="printCard-message">
+
+                </span></p>
+            <p>A gift has been made to <br>
+                Doctors Without Borders/Médecins Sans Frontières (MSF) <br>
+                <span id="printCard-ocassion">In honour of</span>
+            </p>
+            <span id="printCard-honoreeName"></span>
+            <p>This gift will act as a lasting tribute and will help MSF
+                to save lives around the world.</p>
+        </div>
+        <div id="printCard-preview-modal-footer">
+            <div>
+                <img src="../images/content/pagebuilder/logo_msf_bilingual_sm11398.png"
+                    alt="Doctors Without Borders Canada - Médecins Sans Frontières Canada">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function closePrintCardModal() {
+        document.getElementById('printCard-preview-modal').style.display = 'none'
+    }
+</script>
+<!-- BEGIN PRINT CARD PREVIEW MODAL -->
+<!-- BEGIN ECARD TEMPLATE CONTROLS -->
+<div id="ecard-templates-wrapper">
+    <h6>Select Card Template</h6>
+    <div id="ecard-templates-container">
+
+    </div>
+</div>
+<script>
+    var eCards = [
+        {
+            id: '2f3ca591-2e4c-48cc-ac7f-5997db00d1c4',
+            thumbnail: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-1-tall-thumb.jpg',
+            ecardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-1-sm.jpg',
+            printCardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-1-tent-thumb.png',
+            text: 'A team member takes in the view while on assignment with MSF responding to Covid-19 in the Amazon region. Brazil, 2020.'
+        },
+        {
+            id: '2f3ca591-2e4c-48cc-ac7f-5997db00d1c5',
+            thumbnail: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-2-tall-thumb.jpg',
+            ecardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-2-sm.jpg',
+            printCardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-2-tent-thumb.png',
+            text: 'Anthropologist and health promoter Dale Koninckx and logistic supervisor Kebongo Guy-Emmanuel cross a river on a floating platform. From here they will continue on motorcycles. They are part of an MSF team travelling for five hours through the bush to support local health centre staff in remote communities. Central African Republic, 2020.'
+        },
+        {
+            id: '2f3ca591-2e4c-48cc-ac7f-5997db00d1c6',
+            thumbnail: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-3-tall-thumb.jpg',
+            ecardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-3-sm.jpg',
+            printCardImage: '../images/content/pagebuilder/MSF_IN_HONOUR_1_F_Internal_eCard-3-tent-thumb.png',
+            text: 'MSF project coordinator José Lobo on his way to join workers providing essential medical care to people in Tefé municipality from a healthcare boat. MSF helped to implement infection prevention and control measures and offered training for the health team and boat crew following a COVID-19 lockdown that prevented the boat team from offering services. Brazil, 2020.'
+        }
+    ]
+
+    eCards.forEach(function (eCard) {
+        var cardItem = document.createElement('div')
+        var cardLabel = document.createElement('label')
+        var cardImage = document.createElement('img')
+        var cardInput = document.createElement('input')
+
+        cardItem.classList.add('card-item')
+        cardItem.setAttribute('id', eCard.id)
+
+        cardLabel.classList.add('card-item-label')
+        cardLabel.setAttribute('data-ecard', eCard.id)
+
+        cardImage.setAttribute('src', eCard.thumbnail)
+
+        cardInput.setAttribute('name', 'ecard-selector')
+        cardInput.setAttribute('type', 'radio')
+        cardInput.setAttribute('value', eCard.id)
+        cardInput.setAttribute('id', 'card-template-' + eCard.id)
+
+        // Put image inside label
+        cardLabel.appendChild(cardImage)
+        cardLabel.appendChild(cardInput)
+
+        // Append label to div
+        cardItem.appendChild(cardLabel)
+
+        cardLabel.addEventListener('click', function () {
+            document.getElementById('print_and_mail_card_templatehidden').value = this.getAttribute('data-ecard')
+        })
+
+        // Append to placeholder
+        document.getElementById('ecard-templates-container').appendChild(cardItem)
+    })
+
+    // eCard preview
+    var previewButton = document.createElement('span')
+    previewButton.setAttribute('id', 'ecard-preview')
+    previewButton.textContent = 'Preview Card'
+    document.getElementById('ecard-templates-wrapper').appendChild(previewButton)
+
+    previewButton.addEventListener('click', function () {
+        document.body.appendChild(document.getElementById('eCard-preview-modal'))
+        var eCard = eCards.find(element => element.id == document.getElementById('print_and_mail_card_templatehidden').value)
+        // Check for type of card
+        if (NOTIFICATION_OPTION == 'e-card') {
+            document.getElementById('eCard-image').setAttribute('src', eCard.ecardImage)
+            document.getElementById('eCard-description').textContent = (eCard.text)
+            document.getElementById('eCard-ocassion').textContent = document.getElementById('tribute_type').value == 'tribute_type_value1' ? 'in memory of' : 'in honour of'
+            document.getElementById('eCard-honoreeName').textContent = document.getElementById('tribute_honoree_namename').value
+            document.getElementById('eCard-message').textContent = document.getElementById('tribute_message_bodyname').value
+            document.getElementById('eCard-preview-modal').style.display = 'block'
+        } else if (NOTIFICATION_OPTION == 'print_card') {
+            document.getElementById('printCard-image').setAttribute('src', eCard.printCardImage)
+            document.getElementById('printCard-ocassion').textContent = document.getElementById('tribute_type').value == 'tribute_type_value1' ? 'in memory of' : 'in honour of'
+            document.getElementById('printCard-honoreeName').textContent = document.getElementById('tribute_honoree_namename').value
+            document.getElementById('printCard-message').textContent = document.getElementById('tribute_message_bodyname').value
+
+            document.getElementById('printCard-preview-modal').style.display = 'block'
+        }
+    })    
+</script>
+<!-- END ECARD TEMPLATE CONTROLS -->

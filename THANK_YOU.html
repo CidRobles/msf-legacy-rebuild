@@ -1,0 +1,44 @@
+<!-- THANK YOU PAGE REFACTOR -->
+<script>
+    // Append footer to sidebar    
+    var formContent = document.querySelector('.donation-form-container.responsive')
+    document.querySelector('#creative-content').prepend(formContent)
+    document.querySelector('#wrapper aside').style.display = 'none'
+    document.querySelector('.se-pre-con').style.display = 'none'
+</script>
+<style>
+    div.responsive,
+    .mobile div.responsive,
+    .mobile div.donation-form-container.responsive {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+    }
+
+    #show-form-mobile {
+        display: none !important;
+        visibility: hidden;
+        height: 0 !important;
+    }
+
+    #wrapper {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #wrapper aside {
+        padding: 0;
+    }
+
+    aside #secure,
+    aside #form-progress {
+        display: none;
+    }
+
+    div.donation-form-container.responsive {
+        padding: 0;
+        background-color: #fff;
+        border: none;
+    }
+</style>

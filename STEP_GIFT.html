@@ -1,0 +1,313 @@
+<script>
+    // Component state
+    var NOTIFICATION_OPTION = ''
+    var requiredInputs = [
+        'tribute_type',
+        'tribute_honoree_namename',
+        'card_type_dropdown'
+    ]
+
+    var requiredEcardInputs = [
+        'tribute_type',
+        'tribute_honoree_namename',
+        'card_type_dropdown',
+        'tribute_notify_recip_namename',
+        'tribute_message_bodyname',
+        'print_and_mail_ecard_email_input',
+        'print_and_mail_ecard_subject_input',
+        'print_and_mail_card_templatehidden',
+    ]
+
+    var requiredPrintCardInputs = [
+        'tribute_type',
+        'tribute_honoree_namename',
+        'card_type_dropdown',
+        'tribute_notify_recip_namename',
+        'tribute_notify_recip_street1name',
+        'tribute_notify_recip_cityname',
+        'tribute_notify_recip_state',
+        'tribute_notify_recip_zipname',
+        'tribute_notify_recip_country',
+        'tribute_message_bodyname',
+        'print_and_mail_card_templatehidden',
+    ]
+
+
+    function formatGiftStep() {
+        var giftStepFields = []
+        var eCardFields = []
+        var printCardFields = []
+        // Gift step
+        var tributeTypeRow = document.getElementById('tribute_type_row')
+        if (tributeTypeRow) {
+            document.getElementById('tribute_type').options[0].value = ''
+            document.getElementById('tribute_type').options[0].textContent = 'What kind of gift do you want to make?*'
+            giftStepFields.push(tributeTypeRow)
+        }
+
+        var tributeNameRow = document.getElementById('tribute_honoree_name_row')
+        if (tributeNameRow) {
+            document.getElementById('tribute_honoree_namename').setAttribute('placeholder', 'Honoree Name*')
+            giftStepFields.push(tributeNameRow)
+        }
+
+        var cardTypeRow = document.querySelector('#card_type_dropdown')
+        if (cardTypeRow) {
+            var defaultOption = document.createElement('option')
+            defaultOption.value = ''
+            defaultOption.textContent = 'Notification Options*'
+            cardTypeRow.prepend(defaultOption)
+            cardTypeRow.value = ''
+            cardTypeRow = cardTypeRow.parentElement.parentElement
+            document.getElementById('card_type_dropdown').addEventListener('change', function () {
+                handleCardType(this.value)
+            })
+            giftStepFields.push(cardTypeRow)
+        }
+
+        var senderNameControlRow = document.getElementById('sender-name-control')
+        if (senderNameControlRow) {
+            var senderNameRow = document.getElementById('sender_name_input')
+
+            document.getElementById('sender_name_control').addEventListener('change', function () {
+                if (this.checked) {
+                    senderNameRow.value = ''
+                    senderNameRow.parentElement.parentElement.style.display = 'none'
+                } else {
+                    senderNameRow.parentElement.parentElement.style.display = 'block'
+
+                }
+            })
+
+
+            giftStepFields.push(senderNameControlRow.parentElement.parentElement)
+            eCardFields.push(senderNameControlRow.parentElement.parentElement)
+            printCardFields.push(senderNameControlRow.parentElement.parentElement)
+
+            if (senderNameRow) {
+                senderNameRow.setAttribute('placeholder', 'Sender Name')
+                giftStepFields.push(senderNameRow.parentElement.parentElement)
+                eCardFields.push(senderNameRow.parentElement.parentElement)
+                printCardFields.push(senderNameRow.parentElement.parentElement)
+            }
+        }
+
+
+
+        var recipientTitleRow = document.getElementById('tribute_notify_recip_title_row')
+        if (recipientTitleRow) {
+            document.getElementById('tribute_notify_recip_title').options[0].value = ''
+            document.getElementById('tribute_notify_recip_title').options[0].textContent = 'Recipient Title'
+            giftStepFields.push(recipientTitleRow)
+            printCardFields.push(recipientTitleRow)
+        }
+        var recipientNameRow = document.getElementById('tribute_notify_recip_name_row')
+        if (recipientNameRow) {
+            document.getElementById('tribute_notify_recip_namename').setAttribute('placeholder', 'Recipient Name*')
+            giftStepFields.push(recipientNameRow)
+            eCardFields.push(recipientNameRow)
+            printCardFields.push(recipientNameRow)
+        }
+        var recipientStreet1Row = document.getElementById('tribute_notify_recip_street1_row')
+        if (recipientStreet1Row) {
+            document.getElementById('tribute_notify_recip_street1name').setAttribute('placeholder', 'Recipient Street 1*')
+            giftStepFields.push(recipientStreet1Row)
+            printCardFields.push(recipientStreet1Row)
+        }
+        var recipientStreet2Row = document.getElementById('tribute_notify_recip_street2_row')
+        if (recipientStreet2Row) {
+            document.getElementById('tribute_notify_recip_street2name').setAttribute('placeholder', 'Recipient Street 2')
+            giftStepFields.push(recipientStreet2Row)
+            printCardFields.push(recipientStreet2Row)
+        }
+        var recipientCityRow = document.getElementById('tribute_notify_recip_city_row')
+        if (recipientCityRow) {
+            document.getElementById('tribute_notify_recip_cityname').setAttribute('placeholder', 'Recipient City*')
+            giftStepFields.push(recipientCityRow)
+            printCardFields.push(recipientCityRow)
+        }
+        var recipientStateRow = document.getElementById('tribute_notify_recip_state_row')
+        if (recipientStateRow) {
+            document.getElementById('tribute_notify_recip_state').options[0].value = ''
+            document.getElementById('tribute_notify_recip_state').options[0].textContent = 'Recipient State/Province*'
+            giftStepFields.push(recipientStateRow)
+            printCardFields.push(recipientStateRow)
+        }
+        var recipientZipRow = document.getElementById('tribute_notify_recip_zip_row')
+        if (recipientZipRow) {
+            document.getElementById('tribute_notify_recip_zipname').setAttribute('placeholder', 'Recipient Postal/ZIP Code*')
+            giftStepFields.push(recipientZipRow)
+            printCardFields.push(recipientZipRow)
+        }
+        var recipientCountryRow = document.getElementById('tribute_notify_recip_country_row')
+        if (recipientCountryRow) {
+            giftStepFields.push(recipientCountryRow)
+            printCardFields.push(recipientCountryRow)
+        }
+
+        var cardEmailRow = document.querySelector('#print_and_mail_ecard_email_input')
+        if (cardEmailRow) {
+            cardEmailRow.setAttribute('placeholder', 'Recipient Email Address*')
+            cardEmailRow = cardEmailRow.parentElement.parentElement
+            giftStepFields.push(cardEmailRow)
+            eCardFields.push(cardEmailRow)
+        }
+
+        var cardSubjectRow = document.querySelector('#print_and_mail_ecard_subject_input')
+        if (cardSubjectRow) {
+            cardSubjectRow.setAttribute('placeholder', 'eCard Subject')
+            cardSubjectRow = cardSubjectRow.parentElement.parentElement
+            giftStepFields.push(cardSubjectRow)
+            eCardFields.push(cardSubjectRow)
+        }
+
+        var cardMessageRow = document.getElementById('tribute_message_body_row')
+        if (cardMessageRow) {
+            document.getElementById('tribute_message_bodyname').setAttribute('placeholder', 'Message Body* (255 character limit)')
+            giftStepFields.push(cardMessageRow)
+            eCardFields.push(cardMessageRow)
+            printCardFields.push(cardMessageRow)
+        }
+
+
+
+        var cardTemplateRow = document.querySelector('#print_and_mail_card_template_input')
+        if (cardTemplateRow) {
+            cardTemplateRow = cardTemplateRow.parentElement.parentElement
+            giftStepFields.push(cardTemplateRow)
+            eCardFields.push(cardTemplateRow)
+            printCardFields.push(cardTemplateRow)
+        }
+        var cardProjectRow = document.querySelector('#print_and_mail_project_input')
+        if (cardProjectRow) {
+            cardProjectRow = cardProjectRow.parentElement.parentElement
+            giftStepFields.push(cardProjectRow)
+            eCardFields.push(cardProjectRow)
+            printCardFields.push(cardProjectRow)
+        }
+
+        var cardTemplateSelectorRow = document.getElementById('ecard-templates-wrapper')
+        if (cardTemplateSelectorRow) {
+            giftStepFields.push(cardTemplateSelectorRow.parentElement.parentElement)
+            eCardFields.push(cardTemplateSelectorRow.parentElement.parentElement)
+            printCardFields.push(cardTemplateSelectorRow.parentElement.parentElement)
+        }
+
+        for (let index = 0; index < giftStepFields.length; index++) {
+            document.getElementById('form-step-gift').appendChild(giftStepFields[index])
+        }
+
+        function handleCardType(type) {
+            NOTIFICATION_OPTION = type
+            switch (type) {
+                case '':
+                    hidePrintCardFields()
+                    hideCardFields()
+                    // Throw invalid fields errors
+                    break;
+                case 'e-card':
+                    // Hide print card fields
+                    hidePrintCardFields()
+                    // Show eCard fields
+                    showCardFields()
+                    break;
+                case 'print_card':
+                    // Hide eCard fields
+                    hideCardFields()
+                    // Show print card fields
+                    showPrintCardFields()
+                    break;
+                case 'no_card':
+                    hidePrintCardFields()
+                    hideCardFields()
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function showCardFields() {
+            // Make fields visible
+            eCardFields.forEach(function (row) {
+                row.classList.remove('hidden')
+                row.classList.add('visible')
+            })
+        }
+
+        function showPrintCardFields() {
+            // Make fields visible
+            printCardFields.forEach(function (row) {
+                row.classList.remove('hidden')
+                row.classList.add('visible')
+            })
+        }
+
+        function hideCardFields() {
+            eCardFields.forEach(function (row) {
+                row.classList.remove('visible')
+                row.classList.add('hidden')
+            })
+        }
+
+        function hidePrintCardFields() {
+            printCardFields.forEach(function (row) {
+                row.classList.remove('visible')
+                row.classList.add('hidden')
+            })
+        }
+
+
+
+        // Add the "Next step" button
+        var nextStep = document.createElement('span')
+        nextStep.setAttribute('data-next-step', 'billing')
+        nextStep.classList.add('next-step-button')
+        nextStep.textContent = 'Next'
+        document.getElementById('form-step-gift').appendChild(nextStep)
+
+        // Add the "Back" button 
+        var previousStep = document.createElement('span')
+        previousStep.setAttribute('data-previous-step', 'amount')
+        previousStep.classList.add('previous-step-button')
+        previousStep.textContent = 'Back'
+        document.getElementById('form-step-gift').appendChild(previousStep)
+
+        nextStep.addEventListener('click', function (e) {
+            if (NOTIFICATION_OPTION === '') {
+                validateFields(requiredInputs)
+            } else if (NOTIFICATION_OPTION == 'e-card') {
+                validateFields(requiredEcardInputs)
+            } else if (NOTIFICATION_OPTION == 'print_card') {
+                validateFields(requiredPrintCardInputs)
+            } else if (NOTIFICATION_OPTION == 'no_card') {
+                validateFields(requiredInputs)
+            }
+
+            var invalidFields = document.querySelectorAll('.error')
+
+            if (invalidFields.length != 0) {
+                FORM_ERRORS = []
+                e.preventDefault()
+                invalidFields.forEach(function (invalid) {
+                    FORM_ERRORS.push(document.querySelector('label[for="' + invalid.getAttribute('id') + '"]').textContent + ' is required')
+                })
+                renderErrors(FORM_ERRORS)
+            } else {
+                // Check if fields are valid before continuing
+                FORM_ERRORS = []
+                FORM_STEP = 'billing'
+                renderStep()
+            }
+
+        })
+
+        previousStep.addEventListener('click', function () {
+            FORM_STEP = 'amount'
+            renderStep()
+        })
+
+        hideCardFields()
+        hidePrintCardFields()
+
+    }    
+</script>

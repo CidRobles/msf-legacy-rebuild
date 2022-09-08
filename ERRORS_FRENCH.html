@@ -1,0 +1,34 @@
+<!-- Begin Error Modal -->
+<div id="modal-trigger" style="display: none;">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#errorModal">
+        Launch error modal
+    </button>
+</div>
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Veuillez corriger les erreurs ci-dessous.</h5>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function renderErrors(errorList) {
+        // Clear the modal body
+        document.querySelector('#errorModal  .modal-body').innerHTML = ''
+        errorList.forEach(function (error) {
+            var errorDetail = document.createElement('p')
+            errorDetail.textContent = error
+            document.querySelector('#errorModal  .modal-body').appendChild(errorDetail)
+        })
+        document.querySelector('#modal-trigger button').click()
+    }
+</script>
+<!-- End Error Modal -->

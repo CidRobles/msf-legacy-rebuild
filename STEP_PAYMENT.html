@@ -1,0 +1,114 @@
+<script>
+    function formatPaymentStep() {
+        var currentDate = new Date()
+        // Current month
+        var month = currentDate.getMonth()
+        // Current year
+        var year = currentDate.getFullYear()
+        // Payment step
+        var paymentRow = document.querySelector('.payment-type-element-container')
+        var fakeButtonRow = document.querySelector('#process-form').parentElement.parentElement
+        var processButtonRow = document.querySelector('.button-container.clearfix')
+        var paymentStepFields = [
+            paymentRow,
+            fakeButtonRow,
+            processButtonRow
+        ]
+
+        // Required fields
+        var requiredPaymentFields = [
+            'responsive_payment_typecc_exp_date_MONTH',
+            'responsive_payment_typecc_exp_date_YEAR',
+            'responsive_payment_typecc_numbername',
+            'responsive_payment_typecc_cvvname'
+        ]
+
+        for (let index = 0; index < paymentStepFields.length; index++) {
+            document.getElementById('form-step-payment').appendChild(paymentStepFields[index])
+        }
+
+        // elements
+        var monthSelect = document.getElementById('responsive_payment_typecc_exp_date_MONTH')
+        var yearSelect = document.getElementById('responsive_payment_typecc_exp_date_YEAR')
+        var ccInput = document.getElementById('responsive_payment_typecc_numbername')
+        var cvvInput = document.getElementById('responsive_payment_typecc_cvvname')
+
+        ccInput.setAttribute('placeholder', 'Credit Card Number*')
+        cvvInput.setAttribute('placeholder', 'CVV*')
+        document.querySelector('label[for="responsive_payment_typecc_numbername"]').textContent = 'Credit Card Number*'
+        document.querySelector('label[for="responsive_payment_typecc_cvvname"] span').textContent = 'CVV*'
+
+        // Validate month
+        monthSelect.addEventListener('change', function () {
+            // Check the year
+            if (yearSelect.value == year) {
+                if (this.value < month) {
+                    monthSelect.classList.remove('valid')
+                    monthSelect.classList.add('invalid')
+                } else {
+                    monthSelect.classList.remove('invalid')
+                    monthSelect.classList.add('valid')
+                }
+            } else {
+                monthSelect.classList.remove('invalid')
+                monthSelect.classList.add('valid')
+            }
+        })
+        // Validate year
+        yearSelect.addEventListener('change', function () {
+            if (this.value < year) {
+                yearSelect.classList.remove('valid')
+                yearSelect.classList.add('invalid')
+            } else {
+                yearSelect.classList.remove('invalid')
+                yearSelect.classList.add('valid')
+            }
+            monthSelect.dispatchEvent(changeEvent)
+        })
+
+        // Validate CC number 
+        ccInput.setAttribute("maxlength", 16);
+        ccInput.setAttribute("pattern", "[0-9]*");
+        ccInput.addEventListener("input", function () {
+            var invalidKeysRegex = /[^0-9]/g;
+            this.value = this.value.replace(invalidKeysRegex, "");
+        });
+
+        // Validate CVV number
+        cvvInput.setAttribute("pattern", "[0-9]*");
+        cvvInput.addEventListener("input", function () {
+            var invalidKeysRegex = /[^0-9]/g;
+            this.value = this.value.replace(invalidKeysRegex, "");
+        });
+
+        // Process button
+        document.getElementById('process-button').addEventListener('click', function () {
+            validateFields(requiredPaymentFields)
+
+            var emptyFields = document.querySelectorAll('.error')
+
+            if (emptyFields.length === 0) {
+                // Process the form
+                document.getElementById('pstep_finish').click()
+            } else {
+                FORM_ERRORS = []
+                emptyFields.forEach(function (invalid) {
+                    FORM_ERRORS.push(document.querySelector('label[for="' + invalid.getAttribute('id') + '"]').textContent + ' is required')
+                })
+                renderErrors(FORM_ERRORS)
+            }
+        })
+
+        // Add the "Back" button 
+        var previousStep = document.createElement('span')
+        previousStep.setAttribute('data-previous-step', 'billing')
+        previousStep.classList.add('previous-step-button')
+        previousStep.textContent = 'Back'
+        document.getElementById('form-step-payment').appendChild(previousStep)
+
+        previousStep.addEventListener('click', function () {
+            FORM_STEP = 'billing'
+            renderStep()
+        })
+    }    
+</script>

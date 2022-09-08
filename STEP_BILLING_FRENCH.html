@@ -1,0 +1,318 @@
+<script>
+    // Step fields
+    var billingStepFields = []
+    // Required fields (for validation)
+    var requiredDonorFields = [
+        'donor_first_namename',
+        'donor_last_namename',
+        'donor_addr_street1name',
+        'donor_addr_cityname',
+        'donor_addr_state',
+        'donor_phonename',
+        'donor_email_addressname'
+    ]
+
+    var requiredBillingFields = [
+        'billing_first_namename',
+        'billing_last_namename',
+        'billing_addr_street1name',
+        'billing_addr_cityname',
+        'billing_addr_state',
+        'billing_addr_zipname'
+    ]
+
+    var requiredJointFields = [...requiredDonorFields, ...requiredBillingFields]
+
+    // Billing fields
+    var billingRows = [
+        'billing_title_row',
+        'billing_first_name_row',
+        'billing_last_name_row',
+        'billing_addr_street1_row',
+        'billing_addr_street2_row',
+        'billing_addr_city_row',
+        'billing_addr_state_row',
+        'billing_addr_zip_row',
+        'billing_addr_country_row'
+    ]
+
+    var errorMessages = {
+        'donor_addr_zipname': 'Please enter a valid postcode',
+        'billing_addr_zipname': 'Please enter a valid postcode',
+        'donor_email_addressname': 'Please enter a valid email address'
+    }
+
+    function formatBillingStep() {
+        // Billing step
+        var companyGiftRow = document.querySelector('#company_gift_radio')
+        var companyNameRow = document.querySelector('#donor_employer_row')
+        if (companyGiftRow) {
+            document.querySelector('#donor_employername').setAttribute('placeholder', 'Employeur')
+            document.getElementById('company_gift_radio').addEventListener('change', function () {
+                if (this.checked) {
+                    companyNameRow.style.display = 'block'
+                } else {
+                    document.querySelector('#donor_employername').value = ''
+                    companyNameRow.style.display = 'none'
+                }
+            })
+
+            billingStepFields.push(companyGiftRow.parentElement.parentElement.parentElement)
+            billingStepFields.push(companyNameRow)
+        }
+
+        var donorTitleRow = document.querySelector('#donor_title_row')
+        document.getElementById('donor_title').options[0].value = ''
+        document.getElementById('donor_title').options[0].textContent = 'Titre'
+        billingStepFields.push(donorTitleRow)
+
+        var donorFirstNameRow = document.querySelector('#donor_first_name_row')
+        if (donorFirstNameRow) {
+            document.getElementById('donor_first_namename').setAttribute('placeholder', 'Prénom *')
+            billingStepFields.push(donorFirstNameRow)
+        }
+
+        var donorLastNameRow = document.querySelector('#donor_last_name_row')
+        if (donorLastNameRow) {
+            document.getElementById('donor_last_namename').setAttribute('placeholder', 'Nom de famille *')
+            billingStepFields.push(donorLastNameRow)
+        }
+
+        var donorStreet1Row = document.querySelector('#donor_addr_street1_row')
+        if (donorStreet1Row) {
+            document.getElementById('donor_addr_street1name').setAttribute('placeholder', 'Rue 1 *')
+            billingStepFields.push(donorStreet1Row)
+        }
+        var donorStreet2Row = document.querySelector('#donor_addr_street2_row')
+        if (donorStreet2Row) {
+            document.getElementById('donor_addr_street2name').setAttribute('placeholder', 'Rue 2')
+            billingStepFields.push(donorStreet2Row)
+        }
+
+        var donorCityRow = document.querySelector('#donor_addr_city_row')
+        if (donorCityRow) {
+            document.getElementById('donor_addr_cityname').setAttribute('placeholder', 'Ville *')
+            billingStepFields.push(donorCityRow)
+        }
+
+        var donorStateRow = document.querySelector('#donor_addr_state_row')
+        if (donorStateRow) {
+            document.getElementById('donor_addr_state').options[0].value = ''
+            document.getElementById('donor_addr_state').options[0].textContent = 'Province / État *'
+            billingStepFields.push(donorStateRow)
+        }
+
+        var donorZipRow = document.querySelector('#donor_addr_zip_row')
+        if (donorZipRow) {
+            document.getElementById('donor_addr_zipname').setAttribute('placeholder', 'Code postal / code ZIP *')
+            billingStepFields.push(donorZipRow)
+        }
+
+        var donorCountryRow = document.querySelector('#donor_addr_country_row')
+        billingStepFields.push(donorCountryRow)
+
+        var donorPhoneRow = document.querySelector('#donor_phone_row')
+        if (donorPhoneRow) {
+            document.getElementById('donor_phonename').setAttribute('placeholder', 'Numéro de téléphone *')
+            billingStepFields.push(donorPhoneRow)
+        }
+
+        var donorEmailRow = document.querySelector('#donor_email_address_row')
+        if (donorEmailRow) {
+            document.getElementById('donor_email_addressname').setAttribute('placeholder', 'Adresse courriel *')
+            billingStepFields.push(donorEmailRow)
+        }
+
+        var billingSameRow = document.querySelector('#billing_info_same_as_donor_row')
+        billingStepFields.push(billingSameRow)
+
+        var billingTitleRow = document.querySelector('#billing_title_row')
+        document.getElementById('billing_title').options[0].value = ''
+        document.getElementById('billing_title').options[0].textContent = 'Titre'
+        billingStepFields.push(billingTitleRow)
+
+        var billingFNameRow = document.querySelector('#billing_first_name_row')
+        document.getElementById('billing_first_namename').setAttribute('placeholder', 'Prénom *')
+        billingStepFields.push(billingFNameRow)
+
+        var billingLNameRow = document.querySelector('#billing_last_name_row')
+        document.getElementById('billing_last_namename').setAttribute('placeholder', 'Nom *')
+        billingStepFields.push(billingLNameRow)
+
+        var billingStreet1Row = document.querySelector('#billing_addr_street1_row')
+        document.getElementById('billing_addr_street1name').setAttribute('placeholder', 'Rue 1 *')
+        billingStepFields.push(billingStreet1Row)
+
+        var billingStreet2Row = document.querySelector('#billing_addr_street2_row')
+        document.getElementById('billing_addr_street2name').setAttribute('placeholder', 'Rue 2 ')
+        billingStepFields.push(billingStreet2Row)
+
+        var billingCityRow = document.querySelector('#billing_addr_city_row')
+        document.getElementById('billing_addr_cityname').setAttribute('placeholder', 'Ville *')
+        billingStepFields.push(billingCityRow)
+
+        var billingStateRow = document.querySelector('#billing_addr_state_row')
+        document.getElementById('billing_addr_state').options[0].value = ''
+        document.getElementById('billing_addr_state').options[0].textContent = 'Province / État *'
+        billingStepFields.push(billingStateRow)
+
+        var billingZipRow = document.querySelector('#billing_addr_zip_row')
+        document.getElementById('billing_addr_zipname').setAttribute('placeholder', 'Code postal / code ZIP *')
+        billingStepFields.push(billingZipRow)
+
+        var billingCountryRow = document.querySelector('#billing_addr_country_row')
+        billingStepFields.push(billingCountryRow)
+
+        var optInRow = document.querySelector('#donor_email_opt_in_Row')
+        billingStepFields.push(optInRow)
+
+        var legacyInterestRow = document.querySelector('#legacy_interest_radio').parentElement.parentElement.parentElement
+        billingStepFields.push(legacyInterestRow)
+
+        var legacyOptinRow = document.querySelector('#legacy_opt_in_radio').parentElement.parentElement.parentElement
+        billingStepFields.push(legacyOptinRow)
+
+        // var rememberMeRow = document.querySelector('#donor_remember_me_row')
+        // billingStepFields.push(rememberMeRow)
+
+        for (let index = 0; index < billingStepFields.length; index++) {
+            // console.log(billingStepFields[index])
+            document.getElementById('form-step-billing').appendChild(billingStepFields[index])
+        }
+
+        // Check postal code
+        document.getElementById('donor_addr_zipname').addEventListener('blur', function (e) {
+            // Check country 
+            var country = document.getElementById('donor_addr_country').value
+            var regexPcode = /^([a-zA-Z]\d[a-zA-z]( )?\d[a-zA-Z]\d)$/;
+            if (country == 'Canada') {
+                if (regexPcode.test(this.value)) {
+                    document.getElementById('donor_addr_zipname').classList.remove('invalid')
+                    document.getElementById('donor_addr_zipname').classList.add('valid')
+                } else {
+                    document.getElementById('donor_addr_zipname').classList.remove('valid')
+                    document.getElementById('donor_addr_zipname').classList.add('invalid')
+                }
+            } else {
+                document.getElementById('donor_addr_zipname').classList.remove('invalid')
+                document.getElementById('donor_addr_zipname').classList.add('valid')
+            }
+
+        })
+
+        document.getElementById('donor_addr_country').addEventListener('change', function () {
+            document.getElementById('donor_addr_zipname').blur()
+        })
+
+        document.getElementById('billing_addr_zipname').addEventListener('blur', function (e) {
+            var country = document.getElementById('billing_addr_country').value
+            var regexPcode = /^([a-zA-Z]\d[a-zA-z]( )?\d[a-zA-Z]\d)$/;
+            if (country == 'Canada') {
+                if (regexPcode.test(this.value)) {
+                    document.getElementById('billing_addr_zipname').classList.remove('invalid')
+                    document.getElementById('billing_addr_zipname').classList.add('valid')
+                } else {
+                    document.getElementById('billing_addr_zipname').classList.remove('valid')
+                    document.getElementById('billing_addr_zipname').classList.add('invalid')
+                }
+            } else {
+                document.getElementById('billing_addr_zipname').classList.remove('invalid')
+                document.getElementById('billing_addr_zipname').classList.add('valid')
+            }
+        })
+
+        document.getElementById('billing_addr_country').addEventListener('change', function () {
+            document.getElementById('billing_addr_zipname').blur()
+        })
+
+        // Check email address
+        document.getElementById('donor_email_addressname').addEventListener('blur', function () {
+            var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+            if (regex.test(this.value)) {
+                document.getElementById('donor_email_addressname').classList.remove('invalid')
+                document.getElementById('donor_email_addressname').classList.add('valid')
+            } else {
+                document.getElementById('donor_email_addressname').classList.remove('valid')
+                document.getElementById('donor_email_addressname').classList.add('invalid')
+            }
+        })
+
+        // Check phone 
+        document.getElementById('donor_phonename').addEventListener('blur', function () {
+            var regex = /(?:\d{1}\s)?\(?(\d{3})\)?-?\s?(\d{3})-?\s?(\d{4})/g
+            if (regex.test(this.value)) {
+                this.classList.remove('invalid')
+                this.classList.add('valid')
+            } else {
+                this.classList.remove('valid')
+                this.classList.add('invalid')
+            }
+        })
+
+        // Handler for "Billing same as donor info"
+        document.getElementById('billing_info_same_as_donorname').addEventListener('change', function () {
+            for (let index = 0; index < billingRows.length; index++) {
+                if (this.checked) {
+                    document.querySelector('#' + billingRows[index] + '').style.display = 'none'
+                } else {
+                    document.querySelector('#' + billingRows[index] + '').style.display = 'block'
+                }
+
+            }
+        })
+
+        // Add the "Next step" button
+        var nextStep = document.createElement('span')
+        nextStep.setAttribute('data-next-step', 'payment')
+        nextStep.classList.add('next-step-button')
+        nextStep.textContent = 'Suivant'
+        document.getElementById('form-step-billing').appendChild(nextStep)
+
+        // Add the "Back" button 
+        var previousStep = document.createElement('span')
+        previousStep.setAttribute('data-previous-step', TRIBUTE_CHECKED ? FORM_STEP = 'gift' : FORM_STEP = 'amount')
+        previousStep.classList.add('previous-step-button')
+        previousStep.textContent = 'Retour'
+        document.getElementById('form-step-billing').appendChild(previousStep)
+
+        nextStep.addEventListener('click', function (e) {
+
+            if (document.getElementById('billing_info_same_as_donorname').checked) {
+                console.log('Validating donor fields')
+                validateFields(requiredDonorFields)
+            } else {
+                validateFields(requiredJointFields)
+            }
+
+            var emptyFields = document.querySelectorAll('.error')
+
+            if (emptyFields.length === 0) {
+                // Check for valid fields
+                FORM_ERRORS = []
+                var invalidFields = document.querySelectorAll('.invalid')
+                if (invalidFields.length === 0) {
+                    FORM_STEP = 'payment'
+                    renderStep()
+                } else {
+                    invalidFields.forEach(function (invalid) {
+                        FORM_ERRORS.push(document.querySelector('label[for="' + invalid.getAttribute('id') + '"]').textContent + ' a une valeur invalide')
+                    })
+                    renderErrors(FORM_ERRORS)
+                }
+
+            } else {
+                FORM_ERRORS = []
+                emptyFields.forEach(function (invalid) {
+                    FORM_ERRORS.push(document.querySelector('label[for="' + invalid.getAttribute('id') + '"]').textContent + ' - champ obligatoire')
+                })
+                renderErrors(FORM_ERRORS)
+            }
+
+        })
+
+        previousStep.addEventListener('click', function () {
+            TRIBUTE_CHECKED ? FORM_STEP = 'gift' : FORM_STEP = 'amount'
+            renderStep()
+        })
+    }    
+</script>
