@@ -32,13 +32,17 @@
             document.getElementById('tribute_show_honor_fieldsname').addEventListener('change', function () {
                 TRIBUTE_CHECKED = this.checked
                 if (TRIBUTE_CHECKED) {
+                    document.getElementById('tab-gift').style.display = 'block'
                     document.getElementById('tribute_type').setAttribute('required', '')
                     document.getElementById('tribute_honoree_namename').setAttribute('required', '')
                     document.getElementById('card_type_dropdown').setAttribute('required', '')
+                    storeInSession('tribute', true)
                 } else {
+                    document.getElementById('tab-gift').style.display = 'none'
                     document.getElementById('tribute_type').removeAttribute('required')
                     document.getElementById('tribute_honoree_namename').removeAttribute('required')
                     document.getElementById('card_type_dropdown').removeAttribute('required')
+                    storeInSession('tribute', false)
                 }
             })
         }
@@ -54,7 +58,7 @@
             document.querySelector('#one-time-array > div[data-amount="' + formConfig.defaultOneTime + '"]').click()
             document.getElementById('level_standardauto_repeatname').removeAttribute('checked')
             document.getElementById('level_standardauto_repeatname').dispatchEvent(changeEvent)
-
+            storeInSession('monthly', false)
         })
 
         document.getElementById('monthly').addEventListener('click', function () {
@@ -67,6 +71,7 @@
             document.querySelector('#monthly-array > div[data-amount="' + formConfig.defaultMonthly + '"]').click()
             document.getElementById('level_standardauto_repeatname').setAttribute('checked', 'checked')
             document.getElementById('level_standardauto_repeatname').dispatchEvent(changeEvent)
+            storeInSession('monthly', true)
         })
 
         // Add the "Next step" button

@@ -243,6 +243,11 @@
   }
 
   function loadInitialState() {
+    // Retrieving session stored items in case of an error
+    var previousAmount = retrieveFromSession('chosen')
+    var hadMonthly = retrieveFromSession('monthly')
+    var hadTribute = retrieveFromSession('tribute')
+
     // Check for frequency
     if (urlParams.has('monthly')) {
       if (urlParams.get('monthly') == 'on') {
@@ -250,6 +255,8 @@
       } else {
         document.getElementById('one-time').click()
       }
+    } else if (hadMonthly != null) {
+      hadMonthly == true ? document.getElementById('monthly').click() : document.getElementById('one-time').click()
     } else if (formConfig.defaultRecurring == true) {
       document.getElementById('monthly').click()
     } else {
@@ -265,9 +272,17 @@
       else {
         TRIBUTE_CHECKED = false
       }
+    } else if (hadTribute != null) {
+      if (hadTribute == true) {
+        document.getElementById('tribute_show_honor_fieldsname').setAttribute('checked', 'checked')
+        document.getElementById('tribute_show_honor_fieldsname').dispatchEvent(changeEvent)
+      } else {
+        TRIBUTE_CHECKED = false
+      }
     } else {
       TRIBUTE_CHECKED = false
     }
+    document.getElementById('tribute_show_honor_fieldsname').dispatchEvent(changeEvent)
 
     // Check for amount       
     var amount
@@ -283,6 +298,9 @@
           amount = formConfig.defaultOneTime
         }
       }
+    } else if (previousAmount != null) {
+      console.log('Amount retreived from session: ' + previousAmount)
+      amount = previousAmount
     } else {
       if (MONTHLY_SELECTED) {
         amount = formConfig.defaultMonthly
@@ -359,11 +377,9 @@
     amountDisplay.textContent = ('$' + amount)
 
     if (MONTHLY_SELECTED) {
-      console.log('Monthly gift')
       found = formConfig.monthlyArray.find(item => item.amount == amount)
       monthlyDisplay.style.display = 'block'
     } else {
-      console.log('One time gift')
       found = formConfig.oneTimeArray.find(item => item.amount == amount)
       monthlyDisplay.style.display = 'none'
     }

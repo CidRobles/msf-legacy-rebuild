@@ -53,6 +53,7 @@
 
         var cardTypeRow = document.querySelector('#card_type_dropdown')
         if (cardTypeRow) {
+            var hadNotification = retrieveFromSession('notification')
             var defaultOption = document.createElement('option')
             defaultOption.value = ''
             defaultOption.textContent = 'Options de notification*'
@@ -63,6 +64,18 @@
                 handleCardType(this.value)
             })
             giftStepFields.push(cardTypeRow)
+            if (hadNotification != null) {
+                if (hadNotification == 'e-card') {
+                    document.getElementById('card_type_dropdown').value = 'e-card'
+                } else if (hadNotification == 'print-card') {
+                    document.getElementById('card_type_dropdown').value = 'print_card'
+                } else if (hadNotification == 'none') {
+                    document.getElementById('card_type_dropdown').value = 'no_card'
+                }
+                setTimeout(function () {
+                    document.getElementById('card_type_dropdown').dispatchEvent(changeEvent)
+                }, 1000)
+            }
         }
 
         var senderNameControlRow = document.getElementById('sender-name-control')
@@ -203,6 +216,7 @@
                 case '':
                     hidePrintCardFields()
                     hideCardFields()
+                    storeInSession('notification', 'none')
                     // Throw invalid fields errors
                     break;
                 case 'e-card':
@@ -210,16 +224,19 @@
                     hidePrintCardFields()
                     // Show eCard fields
                     showCardFields()
+                    storeInSession('notification', 'e-card')
                     break;
                 case 'print_card':
                     // Hide eCard fields
                     hideCardFields()
                     // Show print card fields
                     showPrintCardFields()
+                    storeInSession('notification', 'print-card')
                     break;
                 case 'no_card':
                     hidePrintCardFields()
                     hideCardFields()
+                    storeInSession('notification', 'none')
                     break;
                 default:
                     break;

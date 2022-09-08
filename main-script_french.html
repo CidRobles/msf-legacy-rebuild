@@ -35,10 +35,34 @@
   function initForm() {
     // Check for page
     if (urlParams.get(form + '.donation') === 'form1') {
+      window.addEventListener('resize', function (event) {
+        if (window.innerWidth >= 768) {
+          document.getElementById('creative-content').style.display = 'block'
+          document.getElementById('show-form-mobile').style.display = 'none'
+          document.querySelector('#wrapper aside').style.display = 'block'
+        } else {
+          document.getElementById('creative-content').style.display = 'block'
+          document.getElementById('show-form-mobile').style.display = 'block'
+          document.querySelector('#wrapper aside').style.display = 'none'
+        }
+      })
       wrapComponents()
       defineGiftArray()
     } else if (urlParams.get(form + '.donation') === 'completed') {
+      console.log('Thank you page loaded')
+      return;
     } else {
+      window.addEventListener('resize', function (event) {
+        if (window.innerWidth >= 768) {
+          document.getElementById('creative-content').style.display = 'block'
+          document.getElementById('show-form-mobile').style.display = 'none'
+          document.querySelector('#wrapper aside').style.display = 'block'
+        } else {
+          document.getElementById('creative-content').style.display = 'block'
+          document.getElementById('show-form-mobile').style.display = 'block'
+          document.querySelector('#wrapper aside').style.display = 'none'
+        }
+      })
       wrapComponents()
       defineGiftArray()
     }
@@ -215,23 +239,14 @@
       document.querySelector('#wrapper aside').style.display = 'none'
     })
 
-
-    window.addEventListener('resize', function (event) {
-      if (window.innerWidth >= 768) {
-        document.getElementById('creative-content').style.display = 'block'
-        document.getElementById('show-form-mobile').style.display = 'none'
-        document.querySelector('#wrapper aside').style.display = 'block'
-      } else {
-        document.getElementById('creative-content').style.display = 'block'
-        document.getElementById('show-form-mobile').style.display = 'block'
-        document.querySelector('#wrapper aside').style.display = 'none'
-      }
-    })
-
     loadInitialState()
   }
 
   function loadInitialState() {
+    var previousAmount = retrieveFromSession('chosen')
+    var hadMonthly = retrieveFromSession('monthly')
+    var hadTribute = retrieveFromSession('tribute')
+
     // Check for frequency
     if (urlParams.has('monthly')) {
       if (urlParams.get('monthly') == 'on') {
@@ -239,6 +254,8 @@
       } else {
         document.getElementById('one-time').click()
       }
+    } else if (hadMonthly != null) {
+      hadMonthly == true ? document.getElementById('monthly').click() : document.getElementById('one-time').click()
     } else if (formConfig.defaultRecurring == true) {
       document.getElementById('monthly').click()
     } else {
@@ -250,13 +267,20 @@
       if (urlParams.get('tribute') == 'on') {
         document.getElementById('tribute_show_honor_fieldsname').setAttribute('checked', 'checked')
         document.getElementById('tribute_show_honor_fieldsname').dispatchEvent(changeEvent)
+      } else {
+        TRIBUTE_CHECKED = false
       }
-      else {
+    } else if (hadTribute != null) {
+      if (hadTribute == true) {
+        document.getElementById('tribute_show_honor_fieldsname').setAttribute('checked', 'checked')
+        document.getElementById('tribute_show_honor_fieldsname').dispatchEvent(changeEvent)
+      } else {
         TRIBUTE_CHECKED = false
       }
     } else {
       TRIBUTE_CHECKED = false
     }
+    document.getElementById('tribute_show_honor_fieldsname').dispatchEvent(changeEvent)
 
     // Check for amount       
     var amount
@@ -272,6 +296,9 @@
           amount = formConfig.defaultOneTime
         }
       }
+    } else if (previousAmount != null) {
+      console.log('Amount retreived from session: ' + previousAmount)
+      amount = previousAmount
     } else {
       if (MONTHLY_SELECTED) {
         amount = formConfig.defaultMonthly
